@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Model;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ModelRepository;
 use App\Entity\Categorie;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class DashboardController extends AbstractController
 {
@@ -31,4 +34,16 @@ class DashboardController extends AbstractController
             'models' => $models
         ]);
     }
+
+        /**
+     * @Route("/model/{id}/delete", name="delete")
+     */
+    public function delete(Model $Model , Request $request, EntityManagerInterface $manager)
+    {
+        $manager->remove($Model);
+        $manager ->flush();
+        return $this->redirectToRoute('Model');
+
+    }
+     
 }
