@@ -27,6 +27,17 @@ class Model
      */
     private $idCategorie;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +63,30 @@ class Model
     public function setIdCategorie(?Categorie $idCategorie): self
     {
         $this->idCategorie = $idCategorie;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImage(): ?image
+    {
+        return $this->Image;
+    }
+
+    public function setImage(image $Image): self
+    {
+        $this->Image = $Image;
 
         return $this;
     }
