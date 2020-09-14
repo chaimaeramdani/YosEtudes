@@ -30,7 +30,6 @@ class DashboardController extends AbstractController
     public function Model(Request $request,ModelRepository $Modelrepo ,EntityManagerInterface $manager)
     {
         if($request->request->get("titre")){
-            dd($request);
             $Model = new Model();
             $Model = $Modelrepo->findOneBy([
                 'id' => $request->request->get("id"),

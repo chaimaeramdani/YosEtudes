@@ -254,7 +254,7 @@
 							</div>
 							<div class="modal fade" id="exampleModal{{model.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog" role="document">
-									<form method="post" action="{{path('Model')}}">
+									<form method="post" action="{{path('Model')}}" enctype="multipart/form-data">
 										<div class="modal-content">
 											<div class="modal-header">
 												<h5 class="modal-title" id="exampleModalLabel">Modification
@@ -277,10 +277,11 @@
 													<div class="form-group">
 														<label for="message-text" class="col-form-label">Image:</label>
 														<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+														
 														<div class="file-upload">
 															{% if model.image == null  %}
 																<div class="image-upload-wrap">
-																	<input class="file-upload-input" type='file'  onchange="readURL(this);" accept="image/*"/>
+																	<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
 																	<div class="drag-text">
 																		<h3>Drag and drop a file or select add Image</h3>
 																	</div>
@@ -299,7 +300,7 @@
 															{% else %}
 															
 															<div class="image-upload-wrap" style="display: none;">
-																	<input class="file-upload-input" type='file'  onchange="readURL(this);" accept="image/*"/>
+																	<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
 																	<div class="drag-text">
 																		<h3>Drag and drop a file or select add Image</h3>
 																	</div>
