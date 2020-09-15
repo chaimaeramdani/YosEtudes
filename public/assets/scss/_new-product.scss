@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .single-new-pro{
     .product-img {
         overflow:hidden;
@@ -36,4 +37,44 @@
 
 .single-new-pro:hover .product-img img {
     transform:scale(1.04)
+=======
+.single-new-pro{
+    .product-img {
+        overflow:hidden;
+        margin-bottom: 30px;
+        img {
+            width:100%;
+            transform:scale(1);
+           @include transition(.4s)
+           }
+       }
+    .product-caption {
+        h3 {
+           a{
+            color:#444444;
+            font-weight:700;
+            font-size:24px;
+            margin-bottom: 12px;
+            @media #{$sm}{
+                font-size:17px;
+            }
+            @media #{$xs}{
+                font-size:20px;
+            }
+           }
+        }
+        span {
+            color:#ff2020;
+            font-size:18px;
+            font-weight:500;
+            display:block;
+        }
+
+
+    }
+}
+
+.single-new-pro:hover .product-img img {
+    transform:scale(1.04)
+>>>>>>> bc1b18dcf5207ef47a6688dd9541ca9e8acf0ad6
    }

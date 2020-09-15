@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -479,3 +480,486 @@ Dimanche 9h00 - 23h00</br>
 
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Contact</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/themify/themify-icons.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css"/>
+    
+	<link rel="stylesheet" type="text/css" href="css/roboto-font.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-5/css/fontawesome-all.min.css">
+  
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="css/style.css"/>
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<header>
+		<!-- Header desktop -->
+		<div class="wrap-menu-header gradient1 trans-0-4">
+			<div class="container h-full">
+				<div class="wrap_header trans-0-3">
+					<!-- Logo -->
+					<div class="logo">
+						<a href="index.html">
+							<img src="images/icons/logo.png" alt="IMG-LOGO" data-logofixed="images/icons/logo2.png">
+						</a>
+					</div>
+
+					<!-- Menu -->
+					<div class="wrap_menu p-l-45 p-l-0-xl">
+						<nav class="menu">
+							<ul class="main_menu">
+								<li>
+									<a href="{{ path('chaim') }}">Home</a>
+								</li>
+
+								<li>
+									<a href="{{ path('menu') }}  ">Menu</a>
+								</li>
+
+								<li>
+									<a href="{{ path('commande') }} ">Commande</a>
+								</li>
+
+
+								<li>
+                                    <a href=" {{ path('about') }}">About</a>
+                                </li>
+      
+								<li>
+                                    <a href="{{ path('contact') }}">Contact</a>
+                                </li>
+                               {% if not app.user %}
+								 <li>
+                                    <a href="{{ path('registration') }}">Inscription/Connexion</a>
+                                </li>{% endif %}
+							</ul>
+						</nav>
+					</div>
+
+					<!-- Social -->
+					<div class="social flex-w flex-l-m p-r-20">
+
+						<button class="btn-show-sidebar m-l-33 trans-0-4"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Sidebar -->
+	<aside class="sidebar trans-0-4">
+		<!-- Button Hide sidebar -->
+		<button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
+
+		<!-- - -->
+		<ul class="menu-sidebar p-t-95 p-b-70">
+			<li class="t-center m-b-13">
+				<a href="{{ path('chaim') }}" class="txt19">Home</a>
+			</li>
+
+			<li class="t-center m-b-13">
+				<a href="{{ path('menu') }}" class="txt19">Menu</a>
+			</li> 
+
+			<li class="t-center m-b-13">
+				<a href="{{ path('about') }}" class="txt19">About</a>
+			</li>
+
+			<li class="t-center m-b-13">
+				<a href="{{ path('commande') }}" class="txt19">Commande</a>
+			</li>
+
+			<li class="t-center m-b-33">
+				<a href="{{ path('contact') }}" class="txt19">Contact</a>
+			</li>
+            <li class="t-center m-b-33">
+				<a href="{{ path('registration') }}" class="txt19">Inscription</a>
+			</li>
+
+			<li class="t-center">
+				<!-- Button3 -->
+				<a href="reservation.html" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
+					Commander
+				</a>
+			</li>
+		</ul>
+
+		<!-- - -->
+		<div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
+			<!-- - -->
+			<h4 class="txt20 m-b-33">
+				Gallery
+			</h4>
+
+			<!-- Gallery -->
+			<div class="wrap-gallery-sidebar flex-w">
+				<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_1.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_2.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_3.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-04.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_4.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_5.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_6.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_7.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-08.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_8.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_9.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_10.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_11.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-12.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_12.jpg" alt="GALLERY">
+						</a>
+			</div>
+		</div>
+	</aside>
+
+
+	<!-- Title Page -->
+	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/1.jpg);">
+		<h2 class="tit6 t-center">
+			Connexion
+		</h2>
+	</section>
+
+
+
+	<!-- Contact form -->
+	<section class="section-contact  p-t-90 p-b-113">
+		<!-- Map -->
+       
+
+       <div class="page-content">
+		<div class="form-v5-content">
+			<form class="form-detail" action="{{ path('security_login') }} " method="post">
+				<h2>Connexion</h2>
+				
+				<div class="form-row">
+					<label for="email">Emailjjjjjjjjjjjjjjjjjjj</label>
+					<input type="text" name="_username" id="email" class="input-text" placeholder=" Email" required>
+					<i class="fas fa-envelope"></i>
+				</div>
+				<div class="form-row">
+					<label for="password">Mot de passe</label>
+					<input type="password" name="_password" id="password" class="input-text" placeholder="Mot de passe" required>
+					<i class="fas fa-lock"></i>
+				</div>
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="Connexion">
+				</div>
+			</form>
+		</div>
+	</div>
+<!-- Contact form -->
+			<div class="row p-t-135">
+				<div class="col-sm-8 col-md-4 col-lg-4 m-l-r-auto p-t-30">
+					<div class="dis-flex m-l-23">
+						<div class="p-r-40 p-t-6">
+							<img src="images/icons/map-icon.png" alt="IMG-ICON">
+						</div>
+
+						<div class="flex-col-l">
+							<span class="txt5 p-b-10">
+								Location
+							</span>
+
+							<span class="txt23 size38">
+								02, rue martil ennahda Oujda</br> 
+								24, BD Echouhada Oujda</br> 
+								33, El Qods Oujda
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-8 col-md-3 col-lg-4 m-l-r-auto p-t-30">
+					<div class="dis-flex m-l-23">
+						<div class="p-r-40 p-t-6">
+							<img src="images/icons/phone-icon.png" alt="IMG-ICON">
+						</div>
+
+
+						<div class="flex-col-l">
+							<span class="txt5 p-b-10">
+								Telephone
+							</span>
+
+							<span class="txt23 size38">
+						        (+212) 638844880</br> 
+                                (+212) 634412519</br> 
+                                (+212) 697444120</br> 
+                               
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-8 col-md-5 col-lg-4 m-l-r-auto p-t-30">
+					<div class="dis-flex m-l-23">
+						<div class="p-r-40 p-t-6">
+							<img src="images/icons/clock-icon.png" alt="IMG-ICON">
+						</div>
+
+
+						<div class="flex-col-l">
+							<span class="txt5 p-b-10">
+								Horaire travaille
+							</span>
+
+							<span class="txt23 size38">
+								09:30  – 23:00  <br/>
+								Dimande : fermé
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Footer -->
+		<footer class="bg1">
+		<div class="container p-t-40 p-b-70">
+			<div class="row">
+				<div class="col-sm-6 col-md-4 p-t-50">
+					<!-- - -->
+					<h4 class="txt13 m-b-33">
+						NOUS JOINDRE
+					</h4>
+
+					<ul class="m-b-70">
+						<li class="txt14 m-b-14">
+							<i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
+							 02rue martil,ennahda, Berkane
+						</li>
+
+						<li class="txt14 m-b-14">
+							<i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
+								<span class="txt23 size38">
+						        (+212) 638844880</br> 
+                                (+212) 634412519</br> 
+                                (+212) 697444120</br> 
+                               
+							</span>
+						</li>
+
+						<li class="txt14 m-b-14">
+							<i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
+							basma@gmail.com
+						</li>
+					</ul></div>
+
+					<!-- - -->
+				
+				
+
+				<div class="col-sm-6 col-md-4 p-t-50">
+					<!-- - -->
+					
+
+					<div class="m-b-25">
+						
+							<h4 class="txt13 m-b-32">
+						Horraire travaile
+					</h4>
+
+					<ul>
+						<li class="txt14">
+						Mardi 9h00 - 23h00</br>
+						Mardi 9h00 - 23h00</br>
+Mercredi 9h00 - 23h00</br>
+Jeudi 9h00 - 23h00</br>
+Vendredi  9h00 - 23h00</br>
+Samedi 9h00 - 23h00</br>
+Dimanche 9h00 - 23h00</br>
+
+						</li>
+					</ul>
+
+					
+
+						
+					</div>
+
+					<div>
+						
+
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 p-t-50">
+					<!-- - -->
+					<h4 class="txt13 m-b-38">
+						Gallery
+					</h4>
+
+					<!-- Gallery footer -->
+					<div class="wrap-gallery-footer flex-w">
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-01.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_1.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-02.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_2.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-03.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_3.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-04.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_4.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-05.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_5.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-06.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_6.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-07.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_7.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-08.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_8.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-09.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_9.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-10.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_10.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-11.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_11.jpg" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="images/photo-gallery-12.jpg" data-lightbox="gallery-footer">
+							<img src="images/img_12.jpg" alt="GALLERY">
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</footer>
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+	</div>
+
+	<!-- Container Selection1 -->
+	<div id="dropDownSelect1"></div>
+
+
+
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/bootstrap/js/popper.js"></script>
+	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
+	<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
+	<script type="text/javascript" src="js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/parallax100/parallax100.js"></script>
+	<script type="text/javascript">
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/lightbox2/js/lightbox.min.js"></script>
+<!--===============================================================================================-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+	<script src="js/map-custom.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+</html>
+>>>>>>> bc1b18dcf5207ef47a6688dd9541ca9e8acf0ad6

@@ -38,6 +38,14 @@ class Model
      */
     private $Image;
 
+<<<<<<< HEAD
+=======
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $url;
+
+>>>>>>> bc1b18dcf5207ef47a6688dd9541ca9e8acf0ad6
     public function getId(): ?int
     {
         return $this->id;
@@ -90,4 +98,19 @@ class Model
 
         return $this;
     }
+<<<<<<< HEAD
+=======
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+>>>>>>> bc1b18dcf5207ef47a6688dd9541ca9e8acf0ad6
 }
