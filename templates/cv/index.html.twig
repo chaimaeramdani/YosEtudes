@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CVController!{% endblock %}
+
+{% block body %}
+<style>
+  .float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#b70000;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #000;
+}
+
+.my-float{
+	margin-top:22px;
+}
+</style>
+
+<div class="content" >
+<a href="#" id="cmd" class="float"  onclick="window.print()" style="background-image: url(images/Dowload.png);background-repeat: no-repeat;
+    background-position: center;">
+<i class="fa fa-plus my-float"></i>
+</a>
+{% endblock %}
+        {% block javascripts %}
+        
+{% endblock %}
