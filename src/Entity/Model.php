@@ -95,8 +95,6 @@ class Model
 
         return $this;
     }
-<<<<<<< HEAD
-=======
 
     public function getUrl(): ?string
     {
@@ -109,5 +107,4 @@ class Model
 
         return $this;
     }
->>>>>>> bc1b18dcf5207ef47a6688dd9541ca9e8acf0ad6
 }
