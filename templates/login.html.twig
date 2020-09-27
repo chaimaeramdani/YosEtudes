@@ -1,3 +1,4 @@
+
 {% block title %}
 	inscription
 {% endblock %}
@@ -151,15 +152,15 @@
 											</button>
 										</div>
 										<div class="modal-body">
-											<form>
+											{{ form_start(form) }}
 												<div id="recipient-name">
-													{{ form_start( form ) }}
-													{{ form_widget(form)}}</div>
+													{{ form_widget(form)}}
+												</div>
 
 												<div class="modal-footer">
 													<button type="submit" class="btn_3">Créer</button>
 												</div>
-												{{ form_end(form)}}</form>
+											{{ form_end(form)}}
 										</div>
 									</div>
 								</div>
@@ -169,10 +170,12 @@
 								<div class="login_part_form">
 									<div class="login_part_form_iner">
 										<h3>
-											Bienvenue !
+											Bienvenue ! {% if app.user %} is connected {% else %} no
+												{% endif %}
+
 											<br>
 											Connectez vous</h3>
-										<form action="{{ path('account_login') }}" method="post">
+										<form action="{{ path('Connect') }}" method="post">
 											<div class="col-md-12 form-group p_star">
 												<input type="text" class="form-control" id="email" name="_username" placeholder="Username" required>
 											</div>
@@ -181,7 +184,7 @@
 											</div>
 											<div class="col-md-12 form-group">
 												<div class="creat_account d-flex align-items-center">
-													<input type="checkbox" id="f-option" name="selector">
+													<input type="checkbox" id="f-option" >
 													<label for="f-option">Remember me</label>
 												</div>
 												<button type="submit" value="submit" class="btn_3">

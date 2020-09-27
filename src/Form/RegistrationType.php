@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Client;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -35,8 +36,8 @@ class RegistrationType extends AbstractType
             ->add('email' ,TextType::class, $this->getConfiguration("email","votre email.."))
             ->add('adresse' ,TextType::class, $this->getConfiguration("adresse","votre adresse.."))
             ->add('date_naissance',TextType::class, $this->getConfiguration("date_naissance","votre date_naisance.."))
-            ->add('password' ,TextType::class, $this->getConfiguration("password","taper un mdp.."))
-            ->add('confirm_password' ,TextType::class, $this->getConfiguration("confirm_pasword","retaper mdp.."))
+            ->add('password' ,PasswordType::class, $this->getConfiguration("password","taper un mdp.."))
+            ->add('confirm_password' ,PasswordType::class, $this->getConfiguration("confirm_pasword","retaper mdp.."))
 
         ;
     }

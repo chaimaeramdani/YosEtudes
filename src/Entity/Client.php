@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
  */
-class Client
+class Client implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -280,7 +280,7 @@ class Client
 
         return $this;
     }
-    public function getRoles()
+    public function getRole()
     {
         $roles=$this->clientRole->map(function($role)
         {return $role->getTitre();
@@ -289,11 +289,10 @@ class Client
         return $roles;
     }
     
-    public function getSalt() {
-    }
+    public function eraseCredentials(){}
+    public function getSalt(){}
+    public function getRoles(){return ['ROLE_USER'];}
     public function getUsername() {
         return $this->email;
-    }
-    public function eraseCredentials() {
     }
 }

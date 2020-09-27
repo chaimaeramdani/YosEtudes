@@ -11,32 +11,53 @@ use App\Entity\Model;
 use App\Entity\Client;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\RegistrationType;
-
-
-
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class CVController extends AbstractController
 {
 
-     /**
-            * @Route("/login", name="registration")
-            *@return Response
-            */
-            public function regsn(Request $request, EntityManagerInterface $manager ) 
-            {
+    /**
+    * @Route("/login", name="registration")
+    *@return Response
+    */
+    public function regsn(AuthenticationUtils $authenticationUtils,Request $request, EntityManagerInterface $manager ,UserPasswordEncoderInterface $encoder ) 
+    {
         
-             $client= new Client();
-             $form= $this ->createForm(RegistrationType::class,$client);
-             $form->handleRequest($request);
- 
-             if($form->isSubmitted()&& $form->isValid()){
-                 $manager->persist($client);
-                 $manager->flush();}
- 
-             return $this->render('login.html.twig', [
-                 'form'=>$form->createView()
-             ]);
-            } 
+        $client= new Client();
+        $form= $this ->createForm(RegistrationType::class,$client);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            $hash = $encoder->encodePassword($client , $client->getPassword());
+            $client->setPassword($hash);
+            $manager->persist($client);
+            $manager->flush();
+            return $this->redirectToRoute('registration');
+        }
+// get the login error if there is one
+$error = $authenticationUtils->getLastAuthenticationError();
+
+// last username entered by the user
+$lastUsername = $authenticationUtils->getLastUsername();
+        return $this->render('login.html.twig', [
+            'last_username' => $lastUsername,
+            'error'         => $error,
+            'form'=>$form->createView()
+        ]);
+    } 
+
+    /**
+    * @Route("/Connect", name="Connect")
+    *
+    */
+    public function Cnx() 
+    {
+        return $this->render('login.html.twig', [ 
+        ]);
+    } 
+
+
 
     /**
      * @Route("/cv", name="cv1")

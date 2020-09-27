@@ -1,12 +1,10 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
-<head>
+{% block stylesheets %}
+
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Yos-Etude</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
     <!-- CSS here -->
@@ -21,9 +19,10 @@
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
-</head>
+{% endblock %}
 
-<body>
+{% block body %}
+
     <!--? Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -55,14 +54,14 @@
                                     <li><a href="{{ path('blog') }}">CV</a></li>
                                     <li class="hot"><a href="#">Demmande</a>
                                         <ul class="submenu">
-                                            <li><a href="{{ path('login') }}"> Demmande d'emploi</a></li>
-                                            <li><a href="{{ path('login') }}"> Demmande de stage</a></li>
+                                            <li><a href="{{ path('registration') }}"> Demmande d'emploi</a></li>
+                                            <li><a href="{{ path('registration') }}"> Demmande de stage</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Login</a>
                                         <ul class="submenu">
-                                            <li><a href="{{ path('login') }}" >Login</a></li>
-                                            <li><a href="{{ path('login') }}">Sing in</a></li>
+                                            <li><a href="{{ path('registration') }}" >Login</a></li>
+                                            <li><a href="{{ path('registration') }}">Sing in</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="{{ path('contact') }}">Contact</a></li>
@@ -478,7 +477,10 @@
     </div>
     <!-- Search model end -->
 
-    <!-- JS here -->
+ 
+{% endblock %}
+{% block javascripts %}
+   <!-- JS here -->
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
@@ -512,6 +514,4 @@
     <!-- Jquery Plugins, main Jquery -->	
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
-    
-</body>
-</html>
+{% endblock %}

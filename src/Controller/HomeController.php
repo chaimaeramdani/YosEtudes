@@ -16,6 +16,7 @@ use App\Form\RegistrationType;
 class HomeController extends AbstractController
 {
     /**
+     * @Route("/")
      * @Route("/home", name="home")
      */
     public function index()
@@ -101,15 +102,7 @@ class HomeController extends AbstractController
         return $this->render('head.html.twig');
     }
 
-     /**
-      * 
-     * @Route("/login", name="account_login")
-     * @return Response
-     */
-    public function login()
-    {
-        return $this->render('login.html.twig');
-    }
+    
     /**
       * 
      * @Route("/logout", name="account_logout")

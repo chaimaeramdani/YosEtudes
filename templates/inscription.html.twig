@@ -108,11 +108,12 @@
                             <div class="login_part_form_iner">
                                 <h3> Bienvenue ! <br>
                                     Inscrivez vous</h3>
-                                {{ form_start(form)}}
-                                 {{ form_widget(form)}}
-                                 <button type="submit" class="btn btn-succes ">confirmer
-</button>
-                                  {{ form_end(form)}}
+                                <form method="post" action="">
+                                <div class="row">
+                                 Prenom :<input type="text" name="prenom">
+                                </div>
+                                 <button type="submit" class="btn btn-succes ">confirmer</button>
+                                </form>
                             </div>
                         </div>
                     </div>
