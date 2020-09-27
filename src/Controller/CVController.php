@@ -4,13 +4,40 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ModelRepository;
 use App\Entity\Model;
+use App\Entity\Client;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\RegistrationType;
+
 
 
 
 class CVController extends AbstractController
 {
+
+     /**
+            * @Route("/login", name="registration")
+            *@return Response
+            */
+            public function regsn(Request $request, EntityManagerInterface $manager ) 
+            {
+        
+             $client= new Client();
+             $form= $this ->createForm(RegistrationType::class,$client);
+             $form->handleRequest($request);
+ 
+             if($form->isSubmitted()&& $form->isValid()){
+                 $manager->persist($client);
+                 $manager->flush();}
+ 
+             return $this->render('login.html.twig', [
+                 'form'=>$form->createView()
+             ]);
+            } 
+
     /**
      * @Route("/cv", name="cv1")
      */
@@ -54,4 +81,6 @@ class CVController extends AbstractController
     {
         return $this->render('cv/bama.html.twig');
     } 
+
+    
 }

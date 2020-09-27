@@ -11,6 +11,9 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\ClientRepository;
+use App\Entity\Client;
+
 
 class DashboardController extends AbstractController
 {
@@ -67,21 +70,25 @@ class DashboardController extends AbstractController
         return $this->redirectToRoute('Model');
 
     }
-    //  /*
-    //  /**
-    //  * @Route("/model/{id}/edit", name="edit")
-    //  */
-    // public function edit(Model $Model , Request $request, EntityManagerInterface $manager)
-    // {
-    //     $form= $this -> createForm (ModelType::class ,$Model);
-    //     $form->handleRequest($request);
-    //     if($form->isSubmitted()&&$form->isValid()){
-    //         $manager->persist($Model);
-    //     $manager ->flush();}
-    //     return $this->render('model/edit.html.twig',[
-    //         'model'=>$Model ->createView()
-    //     ] );
+    
+     /**
+     * @Route("/clients", name="liste_clients")
+     */
+    public function index_c(ClientRepository $repo)
+    {
+        return $this->render('back-office/clients.html.twig', [
+            'clients' => $repo->findAll(),
+        ]);
+    }
+      
+  /**
+     * @Route("/client/{id}/delete", name="deleteC")
+     */
+    public function deleteC(Client $client , EntityManagerInterface $manager)
+    {
+        $manager->remove($client);
+        $manager ->flush();
+        return $this->redirectToRoute('liste_clients');
 
-    // }
-  
+    }
 }

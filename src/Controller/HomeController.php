@@ -4,6 +4,14 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Form\RegistrationType;
+
+
 
 class HomeController extends AbstractController
 {
@@ -26,6 +34,8 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+    
 
      /**
      * @Route("/blog", name="blog")
@@ -92,19 +102,23 @@ class HomeController extends AbstractController
     }
 
      /**
-     * @Route("/login", name="connexion")
+      * 
+     * @Route("/login", name="account_login")
+     * @return Response
      */
     public function login()
     {
         return $this->render('login.html.twig');
     }
-      /**
-     * @Route("/login2", name="login")
+    /**
+      * 
+     * @Route("/logout", name="account_logout")
+     * @return Response
      */
-    public function login2()
+    public function logout()
     {
-        return $this->render('login.html.twig');
     }
+     
   /**
      * @Route("/base", name="base")
      */
@@ -114,7 +128,7 @@ class HomeController extends AbstractController
     }
 
      /**
-     * @Route("/main", name="main")
+     * @Route("/admin/main", name="main")
      */
     public function main()
     {
@@ -139,7 +153,6 @@ class HomeController extends AbstractController
             if($formU->isSubmitted()&& $formU->isValid()){
                 $hash=$encoder->encodePassword($user,$user->getPassword());
                 $user->setPassword($hash);
-                $this->addFlash('success',"votre compte a ete créé par succes ");
                 $manager->persist($user);
                 $manager->flush();
               
@@ -150,30 +163,6 @@ class HomeController extends AbstractController
                ]);
            }  
        
-           /**
-            * @Route("/inscription", name="registration")
-            */
-           public function regn(Request $request, EntityManagerInterface $manager, 
-           UserPasswordEncoderInterface $encoder) 
-           {
-               $user= new User();
-               $form= $this ->createForm(RegistrationType::class , $user );
-               $form->handleRequest($request);
-       
-       
-       
-               if($form->isSubmitted()&& $form->isValid()){
-                   $hash=$encoder->encodePassword($user,$user->getPassword());
-                   $user->setPassword($hash);
-                   $this->addFlash('success',"votre compte a ete créé par succes ");
-       
-                   $manager->persist($user);
-                   $manager->flush();
-       
-                 //  return $this->redirectToRoute('security_login');
-               }
-               return $this->render('inscription.html.twig',['formR'=>$form->createView() ]);
-       
-       
-           } 
-}
+          
+           
+} 
