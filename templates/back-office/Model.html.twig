@@ -1,9 +1,10 @@
 {% include "back-office/index.html.twig" %}
 {% block stylesheets %}
-	<style> 
+	<style>
 		.card {
 			display: inline-table;
-			margin-bottom: 5%;
+			margin-bottom: 1%;
+			width: 100%;
 		}
 
 		.card-header {
@@ -69,6 +70,36 @@
 
 		}
 
+		.rounded-circle {
+			background-color: white;
+			width: 20%;
+			height: 60%;
+			margin: 10px;
+			font-size: 11px
+		}
+
+		.option {
+			margin-left: 0 !important;
+			visibility: hidden;
+			border-radius: 4px;
+		}
+
+		.option > .rounded-circle > .row {
+			justify-content: center;
+		}
+
+		.option > .Remo:hover {
+			color: red;
+		}
+
+		.option > .Edit:hover {
+			color: blue;
+		}
+
+		.option > .Prev:hover {
+			color: orange;
+		}
+
 		.image-upload-wrap {
 			margin-top: 20px;
 			border: 4px dashed #198ae3;
@@ -130,141 +161,318 @@
 			border: 0;
 			transition: all 0.2s ease;
 		}
+
+
+		{
+			# card custom #
+		}
+
+		.cardC {
+			border-radius: 4px;
+			background: #fff;
+			box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+			transition: 0.3s transform cubic-bezier(0.155,1.105,0.295,1.12), 0.3s box-shadow, 0.3s -webkit-transform cubic-bezier(0.155,1.105,0.295,1.12);
+
+			cursor: pointer;
+			height: 100%;
+			background-position: center;
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+
+		.col-xl-6 {
+			height: 190px;
+			padding-bottom: 20px;
+		}
+
+		.cardC:hover {
+			transform: scale(1.05);
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+		}
+
+		.cardC:hover .option {
+			visibility: visible;
+		}
+
+		.cardC h3 {
+			font-weight: 600;
+		}
+
+		.cardC img {
+			position: absolute;
+			top: 20px;
+			right: 15px;
+			max-height: 120px;
+		}
+
+
+		@media(max-width: 990px) {
+			.cardC {
+				margin: 20px;
+			}
+		}
 	</style>
 {% endblock %}
-{% block body %} 
+{% block body %}
+
 	<div class="main-panel">
 		<nav>
-			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<div class="nav nav-tabs" id="nav-tab" role="tablist" style="justify-content: space-evenly;">
 				<a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Cv</a>
 				<a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Portfolio</a>
 				<a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Demande</a>
 			</div>
 		</nav>
-		<div class="tab-content" id="nav-tabContent">
+		<div class="tab-content" id="nav-tabContent" style="border: none !important;">
 			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 				<div class-"card-group">
 					{% for model in models %}
-						{% if model.getIdCategorie().nom == 'Cv' %}
-							<div class="card text-center" style="width: 18rem;">
-								<div class="card-header">
-									<div class="row" style="width: 100%;">
-										<div class="col-md-9" style="align-self: center;">
-											<p style="margin-bottom:0px">{{ model.titre }}</p>
-										</div>
-										<div class="col-sm-3">
-											<div class="dropdown">
-												<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuIconButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													<i class="mdi mdi-dots-vertical"></i>
-												</button>
-												<div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton1">
-													<h6 class="dropdown-header">Settings</h6>
-													<a class="dropdown-item" href="{{path('delete',{'id':model.id})}}">supprimer</a>
-													<a class="dropdown-item" data-toggle="modal" data-target="#exampleModal{{model.id}}">Modifier
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="modal fade" id="exampleModal{{model.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog" role="document">
-										<form method="post" action="{{path('Model')}}" enctype="multipart/form-data">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLabel">Modification
-													</h5>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body">
-													<form>
-														<div class="form-group">
-															<label for="recipient-name" class="col-form-label">Titre:</label>
-															<input type="hidden" value="{{ model.id }}" name="id">
-															<input type="text" class="form-control" name="titre" value="{{ model.titre}}">
-														</div>
-														<div class="form-group">
-															<label for="message-text" class="col-form-label">Description:</label>
-															<textarea class="form-control" name="description">{{model.description}}</textarea>
-														</div>
-														<div class="form-group">
-															<label for="message-text" class="col-form-label">Image:</label>
-															<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+						{# {% if model.getIdCategorie().nom == 'Cv' %}
+																																					<div class="card text-center" style="width: 18rem;">
+																																						<div class="card-header">
+																																							<div class="row" style="width: 100%;">
+																																								<div class="col-md-9" style="align-self: center;">
+																																									<p style="margin-bottom:0px">{{ model.titre }}</p>
+																																								</div>
+																																								<div class="col-sm-3">
+																																									<div class="dropdown">
+																																										<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuIconButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																																											<i class="mdi mdi-dots-vertical"></i>
+																																										</button>
+																																										<div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton1">
+																																											<h6 class="dropdown-header">Settings</h6>
+																																											<a class="dropdown-item" href="{{path('delete',{'id':model.id})}}">supprimer</a>
+																																											<a class="dropdown-item" data-toggle="modal" data-target="#exampleModal{{model.id}}">Modifier
+																																											</a>
+																																										</div>
+																																									</div>
+																																								</div>
+																																							</div>
+																																						</div>
+																																						<div class="modal fade" id="exampleModal{{model.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																																							<div class="modal-dialog" role="document">
+																																								<form method="post" action="{{path('Model')}}" enctype="multipart/form-data">
+																																									<div class="modal-content">
+																																										<div class="modal-header">
+																																											<h5 class="modal-title" id="exampleModalLabel">Modification
+																																											</h5>
+																																											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																																												<span aria-hidden="true">&times;</span>
+																																											</button>
+																																										</div>
+																																										<div class="modal-body">
+																																											<form>
+																																												<div class="form-group">
+																																													<label for="recipient-name" class="col-form-label">Titre:</label>
+																																													<input type="hidden" value="{{ model.id }}" name="id">
+																																													<input type="text" class="form-control" name="titre" value="{{ model.titre}}">
+																																												</div>
+																																												<div class="form-group">
+																																													<label for="message-text" class="col-form-label">Description:</label>
+																																													<textarea class="form-control" name="description">{{model.description}}</textarea>
+																																												</div>
+																																												<div class="form-group">
+																																													<label for="message-text" class="col-form-label">Image:</label>
+																																													<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+																														
+																																													<div class="file-upload">
+																																														{% if model.image == null  %}
+																																															<div class="image-upload-wrap">
+																																																<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
+																																																<div class="drag-text">
+																																																	<h3>Drag and drop a file or select add Image</h3>
+																																																</div>
+																																															</div>
+																																															<div class="file-upload-content">
+																														
+																																																<img class="file-upload-image" src="#" alt="your image"/>
+																														
+																														
+																																																<div class="image-title-wrap">
+																																																	<button type="button" onclick="removeUpload()" class="remove-image">Remove
+																																																		<span class="image-title">Uploaded Image</span>
+																																																	</button>
+																																																</div>
+																																															</div>
+																																														{% else %}
+																														
+																																															<div class="image-upload-wrap" style="display: none;">
+																																																<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
+																																																<div class="drag-text">
+																																																	<h3>Drag and drop a file or select add Image</h3>
+																																																</div>
+																																															</div>
+																																															<div class="file-upload-content" style="display: block;">
+																																																{% if model.image != null %}
+																																																	<img src="{{model.image.url}}" class="file-upload-image" alt="...">
+																																																{% else %}
+																																																	<img class="file-upload-image" src="#" alt="your image"/>
+																																																{% endif %}
+																														
+																																																<div class="image-title-wrap">
+																																																	<button type="button" onclick="removeUpload()" class="remove-image">Remove
+																																																		<span class="image-title">Uploaded Image</span>
+																																																	</button>
+																																																</div>
+																																															</div>
+																																														{% endif %}
+																														
+																														
+																																													</div>
+																																												</div>
+																																											</form>
+																																										</div>
+																																										<div class="modal-footer">
+																																											<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+																																											<button type="submit" class="btn btn-primary">Enregister</button>
+																																										</div>
+																																									</div>
+																																								</form>
+																																							</div>
+																																						</div>
+																														
+																																						{% if model.image != null %}
+																																							<img src="{{model.image.url}}" class="card-img-top" alt="...">
+																																						{% else %}
+																																							<img src="i4.jpg" class="card-img-top" alt="...">
+																																						{% endif %}
+																																						<div class="card-body">
+																																							<h5 class="card-title">Description</h5>
+																																							<p class="card-text">{{ model.description }}</p>
+																																							<a href="{{path(model.url)}}" class="btn btn-primary">Afficher</a>
+																																						</div>
+																																					</div>
+																																				{% endif %} #}
 
-															<div class="file-upload">
-																{% if model.image == null  %}
-																	<div class="image-upload-wrap">
-																		<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
-																		<div class="drag-text">
-																			<h3>Drag and drop a file or select add Image</h3>
-																		</div>
-																	</div>
-																	<div class="file-upload-content">
-
-																		<img class="file-upload-image" src="#" alt="your image"/>
-
-
-																		<div class="image-title-wrap">
-																			<button type="button" onclick="removeUpload()" class="remove-image">Remove
-																				<span class="image-title">Uploaded Image</span>
-																			</button>
-																		</div>
-																	</div>
-																{% else %}
-
-																	<div class="image-upload-wrap" style="display: none;">
-																		<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
-																		<div class="drag-text">
-																			<h3>Drag and drop a file or select add Image</h3>
-																		</div>
-																	</div>
-																	<div class="file-upload-content" style="display: block;">
-																		{% if model.image != null %}
-																			<img src="{{model.image.url}}" class="file-upload-image" alt="...">
-																		{% else %}
-																			<img class="file-upload-image" src="#" alt="your image"/>
-																		{% endif %}
-
-																		<div class="image-title-wrap">
-																			<button type="button" onclick="removeUpload()" class="remove-image">Remove
-																				<span class="image-title">Uploaded Image</span>
-																			</button>
-																		</div>
-																	</div>
-																{% endif %}
-
-
-															</div>
-														</div>
-													</form>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-													<button type="submit" class="btn btn-primary">Enregister</button>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-
-								{% if model.image != null %}
-									<img src="{{model.image.url}}" class="card-img-top" alt="...">
-								{% else %}
-									<img src="i4.jpg" class="card-img-top" alt="...">
-								{% endif %}
-								<div class="card-body">
-									<h5 class="card-title">Description</h5>
-									<p class="card-text">{{ model.description }}</p>
-									<a href="{{path(model.url)}}" class="btn btn-primary">Afficher</a>
-								</div>
-							</div>
-						{% endif %}
 
 					{% endfor %}
 
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document" style="width: 90% !important;max-width: none !important;">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body Preview"></div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Save changes</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade edit" id="exampleModalCenterEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document" style="width: 30% !important;max-width: none !important;">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="row" style="    align-items: baseline;">
+									
+											<div class="col">../../CodeFile/Cv/Header/Ex1/ex1.html</div>
+											<div class="col"><button type="button" class="btn btn-success">Modifier</button></div>
+											<div class="col"><button type="button" class="btn btn-danger">Supprimer</button></div>
+										
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="accordion" id="accordionExample">
+					{% for SousCat in SousCats %}
+						<div class="row">
+							<div class="card">
+								<div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapse{{ SousCat.id }}" aria-expanded="true" aria-controls="collapseOne" style="align-items: baseline;background-image: url('../../back-end/images/Model/CV/CVHeader.png');background-position: left;">
+									<div style="color: white;font-weight: bolder;">{{SousCat.Element}}</div>
+									<button class="btn " type="button">+</button>
+								</div>
 
+								<div id="collapse{{ SousCat.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="container">
+											<div class="row">
+												<div class="col-xl-6" style="">
+													<div class="cardC card-1" style="background-image : url('../../back-end/images/Model/CV/85-modele-cv-exemplaire.png');">
+														<div class="row option" style="width:100%;height:100%;background: #0000008f;justify-content: center;align-items: center;">
+															<button class="btn rounded-circle Prev" data-toggle="modal" data-target="#exampleModalCenter">
+																<div class="row">
+																	<i class="far fa-eye"></i>
+																</div>
+																<div class="row">
+																	Previsualiser
+																</div>
+															</button>
+															<button class="btn rounded-circle Edit" data-toggle="modal" data-target="#exampleModalCenterEdit">
+																<div class="row">
+																	<i class="far fa-edit"></i>
+																</div>
+																<div class="row">
+
+																	Modifier
+																</div>
+															</button>
+															<button class="btn rounded-circle Remo">
+																<div class="row">
+																	<i class="far fa-trash-alt"></i>
+																</div>
+																<div class="row">
+																	Supprimer
+																</div>
+															</button>
+														</div>
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="cardC card-2">
+														<h3>UI Components</h3>
+														<p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
+																																																										          of mobile UI components, ready to go.</p>
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="cardC card-3">
+														<h3>Theming</h3>
+														<p>Learn how to easily customize and modify your app’s design to fit your
+																																																										          brand across all mobile platform styles.</p>
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="cardC card-1">
+														<h3>Ionic Native</h3>
+														<p>A curated set of   ES5/ES6/TypeScript wrappers for plugins to easily add any native functionality to your Ionic apps.</p>
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="cardC card-2">
+														<h3>UI Components</h3>
+														<p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
+																																																										          of mobile UI components, ready to go.</p>
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="cardC card-3">
+														<h3>Theming</h3>
+														<p>Learn how to easily customize and modify your app’s design to fit your
+																																																										          brand across all mobile platform styles.</p>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -314,59 +522,59 @@
 														<textarea class="form-control" name="description">{{model.description}}</textarea>
 													</div>
 													<div class="form-group">
-															<label for="message-text" class="col-form-label">Image:</label>
-															<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+														<label for="message-text" class="col-form-label">Image:</label>
+														<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
-															<div class="file-upload">
-																{% if model.image == null  %}
-																	<div class="image-upload-wrap">
-																		<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
-																		<div class="drag-text">
-																			<h3>Drag and drop a file or select add Image</h3>
-																		</div>
+														<div class="file-upload">
+															{% if model.image == null  %}
+																<div class="image-upload-wrap">
+																	<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
+																	<div class="drag-text">
+																		<h3>Drag and drop a file or select add Image</h3>
 																	</div>
-																	<div class="file-upload-content">
+																</div>
+																<div class="file-upload-content">
 
+																	<img class="file-upload-image" src="#" alt="your image"/>
+
+
+																	<div class="image-title-wrap">
+																		<button type="button" onclick="removeUpload()" class="remove-image">Remove
+																			<span class="image-title">Uploaded Image</span>
+																		</button>
+																	</div>
+																</div>
+															{% else %}
+
+																<div class="image-upload-wrap" style="display: none;">
+																	<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
+																	<div class="drag-text">
+																		<h3>Drag and drop a file or select add Image</h3>
+																	</div>
+																</div>
+																<div class="file-upload-content" style="display: block;">
+																	{% if model.image != null %}
+																		<img src="{{model.image.url}}" class="file-upload-image" alt="...">
+																	{% else %}
 																		<img class="file-upload-image" src="#" alt="your image"/>
+																	{% endif %}
 
-
-																		<div class="image-title-wrap">
-																			<button type="button" onclick="removeUpload()" class="remove-image">Remove
-																				<span class="image-title">Uploaded Image</span>
-																			</button>
-																		</div>
+																	<div class="image-title-wrap">
+																		<button type="button" onclick="removeUpload()" class="remove-image">Remove
+																			<span class="image-title">Uploaded Image</span>
+																		</button>
 																	</div>
-																{% else %}
-
-																	<div class="image-upload-wrap" style="display: none;">
-																		<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
-																		<div class="drag-text">
-																			<h3>Drag and drop a file or select add Image</h3>
-																		</div>
-																	</div>
-																	<div class="file-upload-content" style="display: block;">
-																		{% if model.image != null %}
-																			<img src="{{model.image.url}}" class="file-upload-image" alt="...">
-																		{% else %}
-																			<img class="file-upload-image" src="#" alt="your image"/>
-																		{% endif %}
-
-																		<div class="image-title-wrap">
-																			<button type="button" onclick="removeUpload()" class="remove-image">Remove
-																				<span class="image-title">Uploaded Image</span>
-																			</button>
-																		</div>
-																	</div>
-																{% endif %}
+																</div>
+															{% endif %}
 
 
-															</div>
 														</div>
-													</form>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-													<button type="submit" class="btn btn-primary">Enregister</button>
+													</div>
+												</form>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+												<button type="submit" class="btn btn-primary">Enregister</button>
 											</div>
 										</div>
 									</form>
@@ -393,127 +601,128 @@
 			{% for model in models %}
 				{% if model.getIdCategorie().nom == 'Demande' %}
 					<div class="card text-center" style="width: 18rem;">
-								<div class="card-header">
-									<div class="row" style="width: 100%;">
-										<div class="col-md-9" style="align-self: center;">
-											<p style="margin-bottom:0px">{{ model.titre }}</p>
-										</div>
-										<div class="col-sm-3">
-											<div class="dropdown">
-												<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuIconButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													<i class="mdi mdi-dots-vertical"></i>
-												</button>
-												<div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton1">
-													<h6 class="dropdown-header">Settings</h6>
-													<a class="dropdown-item" href="{{path('delete',{'id':model.id})}}">supprimer</a>
-													<a class="dropdown-item" data-toggle="modal" data-target="#exampleModal{{model.id}}">Modifier
-													</a>
-												</div>
-											</div>
+						<div class="card-header">
+							<div class="row" style="width: 100%;">
+								<div class="col-md-9" style="align-self: center;">
+									<p style="margin-bottom:0px">{{ model.titre }}</p>
+								</div>
+								<div class="col-sm-3">
+									<div class="dropdown">
+										<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuIconButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<i class="mdi mdi-dots-vertical"></i>
+										</button>
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton1">
+											<h6 class="dropdown-header">Settings</h6>
+											<a class="dropdown-item" href="{{path('delete',{'id':model.id})}}">supprimer</a>
+											<a class="dropdown-item" data-toggle="modal" data-target="#exampleModal{{model.id}}">Modifier
+											</a>
 										</div>
 									</div>
-								</div>
-								<div class="modal fade" id="exampleModal{{model.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog" role="document">
-										<form method="post" action="{{path('Model')}}" enctype="multipart/form-data">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLabel">Modification
-													</h5>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body">
-													<form>
-														<div class="form-group">
-															<label for="recipient-name" class="col-form-label">Titre:</label>
-															<input type="hidden" value="{{ model.id }}" name="id">
-															<input type="text" class="form-control" name="titre" value="{{ model.titre}}">
-														</div>
-														<div class="form-group">
-															<label for="message-text" class="col-form-label">Description:</label>
-															<textarea class="form-control" name="description">{{model.description}}</textarea>
-														</div>
-														<div class="form-group">
-															<label for="message-text" class="col-form-label">Image:</label>
-															<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-
-															<div class="file-upload">
-																{% if model.image == null  %}
-																	<div class="image-upload-wrap">
-																		<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
-																		<div class="drag-text">
-																			<h3>Drag and drop a file or select add Image</h3>
-																		</div>
-																	</div>
-																	<div class="file-upload-content">
-
-																		<img class="file-upload-image" src="#" alt="your image"/>
-
-
-																		<div class="image-title-wrap">
-																			<button type="button" onclick="removeUpload()" class="remove-image">Remove
-																				<span class="image-title">Uploaded Image</span>
-																			</button>
-																		</div>
-																	</div>
-																{% else %}
-
-																	<div class="image-upload-wrap" style="display: none;">
-																		<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
-																		<div class="drag-text">
-																			<h3>Drag and drop a file or select add Image</h3>
-																		</div>
-																	</div>
-																	<div class="file-upload-content" style="display: block;">
-																		{% if model.image != null %}
-																			<img src="{{model.image.url}}" class="file-upload-image" alt="...">
-																		{% else %}
-																			<img class="file-upload-image" src="#" alt="your image"/>
-																		{% endif %}
-
-																		<div class="image-title-wrap">
-																			<button type="button" onclick="removeUpload()" class="remove-image">Remove
-																				<span class="image-title">Uploaded Image</span>
-																			</button>
-																		</div>
-																	</div>
-																{% endif %}
-
-
-															</div>
-														</div>
-													</form>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-													<button type="submit" class="btn btn-primary">Enregister</button>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-
-								{% if model.image != null %}
-									<img src="{{model.image.url}}" class="card-img-top" alt="...">
-								{% else %}
-									<img src="i4.jpg" class="card-img-top" alt="...">
-								{% endif %}
-								<div class="card-body">
-									<h5 class="card-title">Description</h5>
-									<p class="card-text">{{ model.description }}</p>
-									<a href="#" class="btn btn-primary">Afficher</a>
 								</div>
 							</div>
+						</div>
+						<div class="modal fade" id="exampleModal{{model.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<form method="post" action="{{path('Model')}}" enctype="multipart/form-data">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Modification
+											</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="form-group">
+													<label for="recipient-name" class="col-form-label">Titre:</label>
+													<input type="hidden" value="{{ model.id }}" name="id">
+													<input type="text" class="form-control" name="titre" value="{{ model.titre}}">
+												</div>
+												<div class="form-group">
+													<label for="message-text" class="col-form-label">Description:</label>
+													<textarea class="form-control" name="description">{{model.description}}</textarea>
+												</div>
+												<div class="form-group">
+													<label for="message-text" class="col-form-label">Image:</label>
+													<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+													<div class="file-upload">
+														{% if model.image == null  %}
+															<div class="image-upload-wrap">
+																<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
+																<div class="drag-text">
+																	<h3>Drag and drop a file or select add Image</h3>
+																</div>
+															</div>
+															<div class="file-upload-content">
+
+																<img class="file-upload-image" src="#" alt="your image"/>
+
+
+																<div class="image-title-wrap">
+																	<button type="button" onclick="removeUpload()" class="remove-image">Remove
+																		<span class="image-title">Uploaded Image</span>
+																	</button>
+																</div>
+															</div>
+														{% else %}
+
+															<div class="image-upload-wrap" style="display: none;">
+																<input class="file-upload-input" type='file' id="image" name="image" onchange="readURL(this);" accept="image/*"/>
+																<div class="drag-text">
+																	<h3>Drag and drop a file or select add Image</h3>
+																</div>
+															</div>
+															<div class="file-upload-content" style="display: block;">
+																{% if model.image != null %}
+																	<img src="{{model.image.url}}" class="file-upload-image" alt="...">
+																{% else %}
+																	<img class="file-upload-image" src="#" alt="your image"/>
+																{% endif %}
+
+																<div class="image-title-wrap">
+																	<button type="button" onclick="removeUpload()" class="remove-image">Remove
+																		<span class="image-title">Uploaded Image</span>
+																	</button>
+																</div>
+															</div>
+														{% endif %}
+
+
+													</div>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+											<button type="submit" class="btn btn-primary">Enregister</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						{% if model.image != null %}
+							<img src="{{model.image.url}}" class="card-img-top" alt="...">
+						{% else %}
+							<img src="i4.jpg" class="card-img-top" alt="...">
 						{% endif %}
+						<div class="card-body">
+							<h5 class="card-title">Description</h5>
+							<p class="card-text">{{ model.description }}</p>
+							<a href="#" class="btn btn-primary">Afficher</a>
+						</div>
+					</div>
+				{% endif %}
 
-					{% endfor %}
+			{% endfor %}
 
 
-				</div>
-			</div>
-<!-- main-panel ends --></div><!-- page-body-wrapper ends --></div>{% endblock %}<script>function readURL(input) {
+		</div>
+	</div>
+	<!-- main-panel ends -->
+</div><!-- page-body-wrapper ends --></div>{% endblock %}<script>function readURL(input) {
 if (input.files && input.files[0]) {
 
 var reader = new FileReader();
@@ -544,4 +753,9 @@ $('.image-upload-wrap').addClass('image-dropping');
 });
 $('.image-upload-wrap').bind('dragleave', function () {
 $('.image-upload-wrap').removeClass('image-dropping');
+});
+
+$(function () {
+$(".Preview").load("../../CodeFile/Cv/Header/Ex1/ex1.html");
+$("#editor").load("../../CodeFile/Cv/Header/Ex1/ex1.html");
 });</script>

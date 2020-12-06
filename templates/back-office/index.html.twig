@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="back-end/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" href="back-end/css/style.css" />
     <link rel="shortcut icon" href="back-end/images/favicon.png" />
-    
+    <style>
+    body{
+      background : linear-gradient(to bottom, #e6e5f2, #4599cd);
+    }
+    </style>
    {% endblock %}
     <!-- Required meta tags -->
     
@@ -213,13 +217,14 @@
             </button>
           </div>
         </nav>
-        <div class="container" style="overflow:auto;padding-right:0px;padding-left:0px;margin-left: 0px;margin-right: 0px">
+        <div class="container" style="overflow:auto;padding-right:0px;padding-left:0px;margin-left: 0px;margin-right: 0px;max-width: 100% !important;">
       
     <!-- container-scroller -->
     <!-- plugins:js -->
 {% endblock %}
 
   {% block javascripts %}
+  <script src="https://kit.fontawesome.com/e5b82708fc.js" crossorigin="anonymous"></script>
             <script src="back-end/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

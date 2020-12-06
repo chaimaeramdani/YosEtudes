@@ -29,9 +29,15 @@ class Categorie
      */
     private $models;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SousCat::class, mappedBy="Model")
+     */
+    private $sousCats;
+
     public function __construct()
     {
         $this->models = new ArrayCollection();
+        $this->sousCats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,6 +82,37 @@ class Categorie
             // set the owning side to null (unless already changed)
             if ($model->getIdCategorie() === $this) {
                 $model->setIdCategorie(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SousCat[]
+     */
+    public function getSousCats(): Collection
+    {
+        return $this->sousCats;
+    }
+
+    public function addSousCat(SousCat $sousCat): self
+    {
+        if (!$this->sousCats->contains($sousCat)) {
+            $this->sousCats[] = $sousCat;
+            $sousCat->setModel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSousCat(SousCat $sousCat): self
+    {
+        if ($this->sousCats->contains($sousCat)) {
+            $this->sousCats->removeElement($sousCat);
+            // set the owning side to null (unless already changed)
+            if ($sousCat->getModel() === $this) {
+                $sousCat->setModel(null);
             }
         }
 

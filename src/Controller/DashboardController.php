@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ClientRepository;
 use App\Entity\Client;
-
+use App\Repository\SousCatRepository;
 
 class DashboardController extends AbstractController
 {
@@ -30,7 +30,7 @@ class DashboardController extends AbstractController
     /**
      * @Route("/Model", name="Model")
      */
-    public function Model(Request $request,ModelRepository $Modelrepo ,EntityManagerInterface $manager)
+    public function Model(Request $request,ModelRepository $Modelrepo,SousCatRepository $Souscat ,EntityManagerInterface $manager)
     {
         if($request->request->get("titre")){
             $Model = new Model();
@@ -53,10 +53,10 @@ class DashboardController extends AbstractController
             $manager->persist($Model);
             $manager->flush();
         }
-        $models = $this->getDoctrine()->getRepository(Model::class)->findAll();
         return $this->render('back-office/Model.html.twig', [
             'controller_name' => 'Model',
-            'models' => $models
+            'models' => $Modelrepo->findAll(),
+            'SousCats' => $Souscat->findAll(),
         ]);
     }
 
